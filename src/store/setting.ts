@@ -6,6 +6,13 @@ export interface SettingStore {
   mode: string;
   apiKey: string;
   apiProxy: string;
+  googleVertexProject: string;
+  googleVertexLocation: string;
+  googleClientEmail: string;
+  googlePrivateKey: string;
+  googlePrivateKeyId: string;
+  googleVertexThinkingModel: string;
+  googleVertexNetworkingModel: string;
   openRouterApiKey: string;
   openRouterApiProxy: string;
   openRouterThinkingModel: string;
@@ -73,7 +80,7 @@ export interface SettingStore {
   smoothTextStreamType: "character" | "word" | "line";
 }
 
-interface SettingFunction {
+interface SettingActions {
   update: (values: Partial<SettingStore>) => void;
   reset: () => void;
 }
@@ -151,7 +158,7 @@ export const defaultValues: SettingStore = {
 };
 
 export const useSettingStore = create(
-  persist<SettingStore & SettingFunction>(
+  persist<SettingStore & SettingActions>(
     (set) => ({
       ...defaultValues,
       update: (values) => set(values),
